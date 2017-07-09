@@ -6,7 +6,10 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
+import io from 'socket.io-client';
+import createSocketIoMiddleware from 'redux-socket.io';
 import createReducer from './reducers';
+const socket = io('http://localhost:3000');
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -17,6 +20,7 @@ export default function configureStore(initialState = {}, history) {
   const middlewares = [
     sagaMiddleware,
     routerMiddleware(history),
+    createSocketIoMiddleware(socket, 'server/'),
   ];
 
   const enhancers = [

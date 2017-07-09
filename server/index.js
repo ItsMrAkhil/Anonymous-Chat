@@ -48,7 +48,7 @@ app.use('/api/messages/:page', (req, res) => {
         logger.error(errCount);
         return res.status(500).json({ success: false, messages: [] });
       }
-      const nextPage = page +1;
+      const nextPage = page + 1;
       const totalPages = Math.ceil(count / 10);
       return res.status(200).json({ success: true, messages, totalPages, nextPage });
     });

@@ -9,7 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import io from 'socket.io-client';
 import createSocketIoMiddleware from 'redux-socket.io';
 import createReducer from './reducers';
-const socket = io('http://localhost:3000');
+const socket = io(window.location.host);
 
 const sagaMiddleware = createSagaMiddleware();
 
